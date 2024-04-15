@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String githubToken = args[0];
         String gistId = args[1];
-        String username = "MADNESSTEST";
-        String repositoryName = "hashhash";
+        String username = "Madness676";
+        String repositoryName = "HashHash";
         String filePath = "new.txt";
 
         String latestCommitHash = getLatestGistCommitHash(gistId);
