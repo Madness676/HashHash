@@ -1,0 +1,32 @@
+name: Update File with Latest Gist Commit Hash
+
+on:
+  push:
+    branches:
+      - main  # Change to your main branch name if different
+
+jobs:
+  update-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    - name: Build and run Java application
+      run: |
+        javac change.java
+        java Main ${{ secrets.DEVKEY }} ${{ secrets.GISTID }}
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add new.txt
+        git commit -m "Update file with latest Gist commit hash" || echo "No changes to commit"
+        git push
