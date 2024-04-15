@@ -17,11 +17,12 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
+        distribution: 'ubuntu'
 
     - name: Build and run Java application
       run: |
         javac change.java
-        java Main ${{ secrets.DEVKEY }} ${{ secrets.GISTID }}
+        java Change ${{ secrets.DEVKEY }} ${{ secrets.GISTID }}
 
     - name: Commit and push changes
       run: |
