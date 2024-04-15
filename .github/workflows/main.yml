@@ -1,18 +1,24 @@
-name: Update File with Latest Gist Commit Hash
+name: Create New File
 
 on:
   push:
     branches:
-      - main  # Change to your main branch name if different
+      - main  # Adjust the branch name as needed
 
 jobs:
-  update-file:
+  create_file:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'  # Adjust PHP version as needed
 
-    - name: Execute Bash script
-      run: |
-        bash change.sh ${{ secrets.DEVKEY }} ${{ secrets.GISTID }}
+      - name: Execute PHP Script
+        run: |
+          php change.php
+        env:
+          DEV_KEY: ${{ secrets.DEV_KEY }}
